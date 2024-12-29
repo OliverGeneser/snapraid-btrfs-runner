@@ -3,9 +3,9 @@
 executable = snapraid-btrfs
 ; optional: specify snapper-configs and/or snapper-configs-file as specified in snapraid-btrfs
 ; only one instance of each can be specified in this config
-snapper-configs = 
-snapper-configs-file = 
-; specify whether snapraid-btrfs should run the pool command after the sync, and optionally specify pool-dir 
+snapper-configs =
+snapper-configs-file =
+; specify whether snapraid-btrfs should run the pool command after the sync, and optionally specify pool-dir
 pool = false
 pool-dir =
 ; specify whether snapraid-btrfs-runner should automatically clean up all but the last snapraid-btrfs sync snapshot after a successful sync
@@ -51,6 +51,13 @@ ssl = false
 tls = false
 user =
 password =
+
+[signal]
+enabled = false
+sendon = success,error
+; path to the signal-cli executable (e.g. /usr/bin/signal-cli)
+executable = signal-cli
+chatid =
 
 [scrub]
 ; set to true to run scrub after sync
