@@ -43,7 +43,14 @@ def send_signal_notification(success, log):
     """
     Function to send signal notification
     """
-    command = [
+    receive_command = [
+        config["signal"]["executable"],
+        "receive",
+        "--timeout",
+        "1",
+    ]
+
+    send_command = [
         config["signal"]["executable"],
         "send",
         "-g",
@@ -57,7 +64,13 @@ def send_signal_notification(success, log):
     ]
 
     try:
-        result = subprocess.run(command, capture_output=True, text=True, check=True)
+        result_receive = subprocess.run(
+            receive_command, capture_output=True, text=True, check=False
+        )
+        logging.info("Signal receive completed (session initialized).")
+        result_sent = subprocess.run(
+            send_command, capture_output=True, text=True, check=True
+        )
         logging.info("Signal notification sent successfully.")
     except subprocess.CalledProcessError as err:
         logging.error("Error: %s" % err)
