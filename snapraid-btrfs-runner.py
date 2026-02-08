@@ -45,6 +45,8 @@ def send_signal_notification(success, log):
     """
     receive_command = [
         config["signal"]["executable"],
+        "--config",
+        config["signal"]["config"],
         "receive",
         "--timeout",
         "1",
@@ -52,6 +54,8 @@ def send_signal_notification(success, log):
 
     send_command = [
         config["signal"]["executable"],
+        "--config",
+        config["signal"]["config"],
         "send",
         "-g",
         signal_chatid,
